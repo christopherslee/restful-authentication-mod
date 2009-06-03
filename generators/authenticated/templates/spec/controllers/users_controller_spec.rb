@@ -30,8 +30,8 @@ describe <%= model_controller_class_name %>Controller do
 
   it 'requires login on signup' do
     lambda do
-      create_<%= file_name %>(:login => nil)
-      assigns[:<%= file_name %>].errors.on(:login).should_not be_nil
+      create_<%= file_name %>(:email => nil)
+      assigns[:<%= file_name %>].errors.on(:email).should_not be_nil
       response.should be_success
     end.should_not change(<%= class_name %>, :count)
   end
@@ -89,7 +89,7 @@ describe <%= model_controller_class_name %>Controller do
   end<% end %>
   
   def create_<%= file_name %>(options = {})
-    post :create, :<%= file_name %> => { :login => 'quire', :email => 'quire@example.com',
+    post :create, :<%= file_name %> => { :email => 'quire@example.com',
       :password => 'quire69', :password_confirmation => 'quire69' }.merge(options)
   end
 end

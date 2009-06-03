@@ -3,11 +3,16 @@
 
 <%%= error_messages_for :<%= file_name %> %>
 <%% form_for :<%= file_name %>, :url => <%= model_controller_routing_name %>_path do |f| -%>
-<p><%%= label_tag 'login' %><br/>
-<%%= f.text_field :login %></p>
 
 <p><%%= label_tag 'email' %><br/>
 <%%= f.text_field :email %></p>
+
+<p><%%= label_tag 'first' %><br/>
+<%%= f.text_field :first %></p>
+
+<p><%%= label_tag 'last' %><br/>
+<%%= f.text_field :last %></p>
+
 
 <p><%%= label_tag 'password' %><br/>
 <%%= f.password_field :password %></p>

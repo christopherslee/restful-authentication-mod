@@ -12,8 +12,9 @@
 
 quentin:
   id:                        1
-  login:                     quentin
   email:                     quentin@example.com
+  first:                     Quentin
+  last:                      Turtle
   salt:                      <%= salts[0]   %> # SHA1('0')
   crypted_password:          <%= passwds[0] %> # 'monkey'
   created_at:                <%%= 5.days.ago.to_s :db  %>
@@ -29,8 +30,9 @@ quentin:
       
 aaron:
   id:                        2
-  login:                     aaron
   email:                     aaron@example.com
+  first:                     Aaron
+  last:                      Aces
   salt:                      <%= salts[1]   %> # SHA1('1')
   crypted_password:          <%= passwds[1] %> # 'monkey'
   created_at:                <%%= 1.days.ago.to_s :db %>
@@ -47,8 +49,9 @@ aaron:
 
 old_password_holder:
   id:                        3
-  login:                     old_password_holder
   email:                     salty_dog@example.com
+  first:                     Salty
+  last:                      Dog
   salt:                      7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   created_at:                <%%= 1.days.ago.to_s :db %>

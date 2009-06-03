@@ -40,8 +40,8 @@ describe <%= class_name %> do
 
   it 'requires login' do
     lambda do
-      u = create_<%= file_name %>(:login => nil)
-      u.errors.on(:login).should_not be_nil
+      u = create_<%= file_name %>(:email => nil)
+      u.errors.on(:email).should_not be_nil
     end.should_not change(<%= class_name %>, :count)
   end
 
@@ -50,8 +50,8 @@ describe <%= class_name %> do
      'hello.-_there@funnychar.com'].each do |login_str|
       it "'#{login_str}'" do
         lambda do
-          u = create_<%= file_name %>(:login => login_str)
-          u.errors.on(:login).should     be_nil
+          u = create_<%= file_name %>(:email => login_str)
+          u.errors.on(:email).should     be_nil
         end.should change(<%= class_name %>, :count).by(1)
       end
     end
@@ -62,8 +62,8 @@ describe <%= class_name %> do
      'semicolon;', 'quote"', 'tick\'', 'backtick`', 'percent%', 'plus+', 'space '].each do |login_str|
       it "'#{login_str}'" do
         lambda do
-          u = create_<%= file_name %>(:login => login_str)
-          u.errors.on(:login).should_not be_nil
+          u = create_<%= file_name %>(:email => login_str)
+          u.errors.on(:email).should_not be_nil
         end.should_not change(<%= class_name %>, :count)
       end
     end
@@ -151,8 +151,8 @@ describe <%= class_name %> do
   end
 
   it 'does not rehash password' do
-    <%= table_name %>(:quentin).update_attributes(:login => 'quentin2')
-    <%= class_name %>.authenticate('quentin2', 'monkey').should == <%= table_name %>(:quentin)
+    <%= table_name %>(:quentin).update_attributes(:email => 'quentin2@example.com')
+    <%= class_name %>.authenticate('quentin2@example.com', 'monkey').should == <%= table_name %>(:quentin)
   end
 
   #
@@ -283,7 +283,7 @@ describe <%= class_name %> do
 <% end %>
 protected
   def create_<%= file_name %>(options = {})
-    record = <%= class_name %>.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
+    record = <%= class_name %>.new({ :email => 'quire@example.com', :password => 'quire69', :password_confirmation => 'quire69' }.merge(options))
     record.<% if options[:stateful] %>register! if record.valid?<% else %>save<% end %>
     record
   end
